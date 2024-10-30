@@ -11,10 +11,11 @@ export default function HomePage() {
         <div className="text-2xl font-bold">Eventick</div>
         <nav className="space-x-8">
           <Link href="#Schedule">Schedule</Link>
-
           <Link href="/ticket">Ticket</Link>
           <Link href="#contact">Contact</Link>
-          <button className="border border-white px-4 py-1 rounded-full"> <Link href="/login">LOGIN</Link></button>
+          <Link href="/login">
+            <button className="border border-white px-4 py-1 rounded-full">LOGIN</button>
+          </Link>
         </nav>
       </header>
 
@@ -32,7 +33,9 @@ export default function HomePage() {
             Look no further! Our MTV The Show tickets are the simplest way for you to experience a live Kpop recording.
           </p>
           <div className="mt-6 space-x-4">
-            <button className="bg-pink-500 px-6 py-3 rounded-full text-white font-semibold"><Link href="/ticket">Get Ticket</Link></button>
+            <Link href="/ticket">
+              <button className="bg-pink-500 px-6 py-3 rounded-full text-white font-semibold">Get Ticket</button>
+            </Link>
             <button className="border border-white px-6 py-3 rounded-full text-white font-semibold">Learn More</button>
           </div>
         </div>
@@ -57,8 +60,6 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-
-
 
       {/* Upcoming Events Section */}
       <section id="Schedule" className="bg-white text-black px-8 py-12 mt-12">
@@ -88,7 +89,7 @@ export default function HomePage() {
             <Image src="/pgg2.png" alt="Event 2" width={400} height={200} />
             <div className="p-4">
               <p className="text-xs text-gray-400">AUG</p>
-              <h3 className="font-semibold text-lg">JYJ 2011  Worldwide Concert Barcelona</h3>
+              <h3 className="font-semibold text-lg">JYJ 2011 Worldwide Concert Barcelona</h3>
               <p className="text-sm text-gray-500 mt-2">Directly seated and inside for you to enjoy the show.</p>
             </div>
           </div>
@@ -102,25 +103,29 @@ export default function HomePage() {
               <p className="text-sm text-gray-500 mt-2">Directly seated and inside for you to enjoy the show.</p>
             </div>
           </div>
-
         </div>
       </section>
+
+      {/* Make Your Own Event Section */}
       <section className="flex justify-center items-center py-12 mt-12">
         <div className="flex flex-col lg:flex-row items-center bg-white rounded-xl shadow-md p-8 max-w-5xl">
           {/* Left Image */}
           <div className="lg:w-1/2 flex justify-center">
-            <Image src="/image 3.png" alt="Make Your Own Event" width={300} height={300} />
+            <Image src="/image3.png" alt="Make Your Own Event" width={300} height={300} />
           </div>
 
           {/* Right Text */}
           <div className="lg:w-1/2 mt-8 lg:mt-0 lg:pl-12 text-center lg:text-left">
             <h2 className="text-3xl font-bold text-black">Make your own Event</h2>
             <p className="text-gray-700 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button className="mt-6 bg-pink-500 text-white px-6 py-3 rounded-full font-semibold">   <Link href="/event">Create Event</Link></button>
+            <Link href="/event">
+              <button className="mt-6 bg-pink-500 text-white px-6 py-3 rounded-full font-semibold">Create Event</button>
+            </Link>
           </div>
         </div>
       </section>
 
+      {/* Footer */}
       <footer className="bg-blue-900 text-white py-12">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-start gap-10 md:gap-20 px-6">
           {/* Logo and Description */}
@@ -147,51 +152,23 @@ export default function HomePage() {
           <div className="w-full md:w-1/5">
             <h3 className="text-lg font-semibold mb-4">Plan Events</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-pink-500">Create and Set Up</a></li>
-              <li><a href="#" className="hover:text-pink-500">Sell Tickets</a></li>
-              <li><a href="#" className="hover:text-pink-500">Online RSVP</a></li>
-              <li><a href="#" className="hover:text-pink-500">Online Events</a></li>
+              <li><Link href="/event">Create Event</Link></li>
+              <li><Link href="/events">Discover Events</Link></li>
+              <li><Link href="/faq">FAQs</Link></li>
             </ul>
           </div>
 
-          {/* Eventick Links */}
-          <div className="w-full md:w-1/5">
-            <h3 className="text-lg font-semibold mb-4">Eventick</h3>
-            <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-pink-500">About Us</a></li>
-              <li><a href="#" className="hover:text-pink-500">Press</a></li>
-              <li><a href="#" className="hover:text-pink-500">Contact Us</a></li>
-              <li><a href="#" className="hover:text-pink-500">Help Center</a></li>
-              <li><a href="#" className="hover:text-pink-500">How it Works</a></li>
-              <li><a href="#" className="hover:text-pink-500">Privacy</a></li>
-              <li><a href="#" className="hover:text-pink-500">Terms</a></li>
-            </ul>
-          </div>
-
+          {/* Newsletter Subscription */}
           <div className="w-full md:w-1/4">
-            <h3 className="text-lg font-semibold mb-4">Stay In The Loop</h3>
-            <p className="text-sm mb-4">
-              Join our mailing list to stay in the loop with our newest for Event and concert.
-            </p>
-            <div className="flex items-center">
-              <input
-                type="email"
-                placeholder="Enter your email address..."
-                className="flex-grow p-3 rounded-l-full border-2 border-white focus:outline-none"
-              />
-              <button className="bg-pink-500 text-white py-5 px-6 text-xs rounded-r-full font-semibold hover:bg-pink-600 transition">
-                Subscribe
-              </button>
+            <h3 className="text-lg font-semibold mb-4">Subscribe to our Newsletter</h3>
+            <p className="text-sm mb-4">Sign up to get the latest on all things events, straight to your inbox.</p>
+            <div className="flex">
+              <input type="email" placeholder="Enter your email" className="flex-grow px-4 py-2 rounded-l-lg focus:outline-none" />
+              <button className="bg-pink-500 text-white px-4 rounded-r-lg">Subscribe</button>
             </div>
           </div>
         </div>
-
-        {/* Footer Bottom */}
-        <div className="border-t border-gray-700 mt-10 pt-4 text-center text-sm">
-          <p>Copyright © 2022 Aimee mercury</p>
-        </div>
       </footer>
-
     </div>
   );
 }
