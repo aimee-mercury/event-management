@@ -1,23 +1,24 @@
-// components/LoginForm.tsx
+// components/SignupForm.tsx
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FiMail, FiLock } from "react-icons/fi";
 import Link from "next/link";
 
-export default function LoginForm() {
+export default function SignupForm() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({ email: "", password: "" });
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errors, setErrors] = useState({ email: "", password: "", confirmPassword: "" });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent form default behavior
+    e.preventDefault();
 
     // Validation logic
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     let valid = true;
-    const newErrors = { email: "", password: "" };
+    const newErrors = { email: "", password: "", confirmPassword: "" };
 
     if (!email || !emailRegex.test(email)) {
       newErrors.email = "Please enter a valid email.";
@@ -29,11 +30,16 @@ export default function LoginForm() {
       valid = false;
     }
 
+    if (password !== confirmPassword) {
+      newErrors.confirmPassword = "Passwords do not match.";
+      valid = false;
+    }
+
     setErrors(newErrors);
 
     if (valid) {
-      // Navigate to home page directly upon successful login
-      router.push("/home");
+      // Redirect to login page after successful signup
+      router.push("/login");
     }
   };
 
@@ -43,8 +49,8 @@ export default function LoginForm() {
         onSubmit={handleSubmit}
         className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg space-y-6 animate-fade-in"
       >
-        <h2 className="text-3xl font-extrabold text-center text-gray-800">Welcome Back</h2>
-        <p className="text-center text-gray-500">Please sign in to your account</p>
+        <h2 className="text-3xl font-extrabold text-center text-gray-800">Create an Account</h2>
+        <p className="text-center text-gray-500">Sign up to get started</p>
         
         {/* Email Input */}
         <div className="relative">
@@ -55,7 +61,7 @@ export default function LoginForm() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 pl-10 border rounded focus:outline-none focus:border-pink-500 transition duration-200"
+              className="w-full p-3 pl-10 border rounded focus:outline-none focus:border-purple-500 transition duration-200"
               placeholder="Enter your email"
               aria-invalid={!!errors.email}
               aria-describedby="email-error"
@@ -73,7 +79,7 @@ export default function LoginForm() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 pl-10 border rounded focus:outline-none focus:border-pink-500 transition duration-200"
+              className="w-full p-3 pl-10 border rounded focus:outline-none focus:border-purple-500 transition duration-200"
               placeholder="Enter your password"
               aria-invalid={!!errors.password}
               aria-describedby="password-error"
@@ -82,20 +88,36 @@ export default function LoginForm() {
           {errors.password && <p id="password-error" className="text-sm text-red-500 mt-1">{errors.password}</p>}
         </div>
 
+        {/* Confirm Password Input */}
+        <div className="relative">
+          <label className="block text-gray-700 font-semibold mb-2">Confirm Password</label>
+          <div className="relative flex items-center">
+            <FiLock className="absolute left-3 text-gray-400" />
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="w-full p-3 pl-10 border rounded focus:outline-none focus:border-purple-500 transition duration-200"
+              placeholder="Confirm your password"
+              aria-invalid={!!errors.confirmPassword}
+              aria-describedby="confirm-password-error"
+            />
+          </div>
+          {errors.confirmPassword && <p id="confirm-password-error" className="text-sm text-red-500 mt-1">{errors.confirmPassword}</p>}
+        </div>
+
         {/* Submit Button */}
         <button
           type="submit"
           className="w-full py-3 px-4 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-lg transition duration-300 transform hover:scale-105"
         >
-          Login
+          Sign Up
         </button>
 
-        {/* Sign Up Link */}
+        {/* Link to Login */}
         <p className="text-center text-gray-600 mt-4">
-          Don&apos;t have an account?{" "}
-          <Link href="/signup" className="text-purple-600 hover:underline">
-            Sign up
-          </Link>
+          Already have an account?{" "}
+          <Link href="/login" className="text-purple-600 hover:underline">Log in</Link>
         </p>
       </form>
     </div>
